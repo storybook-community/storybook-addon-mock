@@ -1,4 +1,7 @@
-name: Validate Build 📦
+name: Build (Legacy)
+
+# This workflow is deprecated. Please use continuous-integration.yml instead.
+# Kept for backward compatibility.
 
 on: [push, pull_request]
 
@@ -7,26 +10,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout 🛒
-        uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Configure Node 🔧
+      - name: Configure Node
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-      - name: Install Dependencies 📦
+          cache: 'yarn'
+      - name: Install Dependencies
         run: |
           npm install -g yarn
-          yarn
-          yarn run ci
+          yarn install
         env:
           CI: true
 
-      - name: Validate Code Style 📏
+      - name: Validate Code Style
         run: |
           yarn lint
 
-      - name: Validate Build ✅
+      - name: Validate Build
         run: |
           yarn build
         env:
