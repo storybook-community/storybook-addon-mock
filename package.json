@@ -1,6 +1,7 @@
 {
   "name": "@storybook-community/storybook-addon-mock-root",
   "description": "A monorepo for storybook-addon-mock",
+  "version": "10.1.2",
   "private": true,
   "workspaces": [
     "packages/*"
@@ -8,9 +9,13 @@
   "scripts": {
     "clean": "rm -rf dist",
     "build": "yarn run addon:build && yarn run docs:build",
+    "build:storybook": "yarn workspace @espoc/storybook-addon-mock-docs run build",
     "lint": "yarn workspaces run lint",
     "lint:fix": "yarn workspaces run lint:fix",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write .",
     "test": "yarn workspaces run test",
+    "test:coverage": "yarn workspaces run test -- --coverage",
     "ci": "yarn run lint && yarn run test && yarn run addon:build && yarn run docs:build",
     "addon:build": "yarn workspace @storybook-community/storybook-addon-mock run build",
     "docs:start": "yarn workspace @storybook-community/storybook-addon-mock-docs run storybook",
