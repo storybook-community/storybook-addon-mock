@@ -9,7 +9,7 @@
   "scripts": {
     "clean": "rm -rf dist",
     "build": "yarn run addon:build && yarn run docs:build",
-    "build:storybook": "yarn workspace @espoc/storybook-addon-mock-docs run build",
+    "build:storybook": "yarn workspace @storybook-community/storybook-addon-mock-docs run build",
     "lint": "yarn workspaces run lint",
     "lint:fix": "yarn workspaces run lint:fix",
     "format": "prettier --check .",
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nutboltu/storybook-addon-mock.git"
+    "url": "https://github.com/storybook-community/storybook-addon-mock.git"
   },
   "keywords": [
     "storybook",
