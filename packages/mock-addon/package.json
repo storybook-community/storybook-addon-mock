@@ -18,7 +18,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/storybook-community/storybook-addon-mock.git"
+    "url": "git+https://github.com/storybook-community/storybook-addon-mock.git"
   },
   "type": "module",
   "exports": {
