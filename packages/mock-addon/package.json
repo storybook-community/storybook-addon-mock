@@ -1,114 +1,114 @@
 {
-    "name": "@storybook-community/storybook-addon-mock",
-    "version": "10.1.1",
-    "description": "A storybook addon to mock fetch/XHR request",
-    "keywords": [
-        "storybook",
-        "mock",
-        "http-mock",
-        "fetch-mock",
-        "xhr-mock",
-        "mock-data",
-        "storybook-addon",
-        "data-state",
-        "storybook-mock-request",
-        "mock-request"
+  "name": "@storybook-community/storybook-addon-mock",
+  "version": "10.1.1",
+  "description": "A storybook addon to mock fetch/XHR request",
+  "keywords": [
+    "storybook",
+    "mock",
+    "http-mock",
+    "fetch-mock",
+    "xhr-mock",
+    "mock-data",
+    "storybook-addon",
+    "data-state",
+    "storybook-mock-request",
+    "mock-request"
+  ],
+  "author": "Farhad Yasir (nutboltu)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/storybook-community/storybook-addon-mock.git"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./preview": {
+      "types": "./dist/preview.d.ts",
+      "default": "./dist/preview.js"
+    },
+    "./preset": "./dist/preset.js",
+    "./manager": "./dist/manager.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "*.js",
+    "*.d.ts"
+  ],
+  "scripts": {
+    "clean": "rimraf ./dist",
+    "prebuild": "yarn clean",
+    "build": "tsup",
+    "build-storybook": "storybook build",
+    "build:watch": "tsup --watch",
+    "lint": "eslint .",
+    "lint:fix": "yarn run lint --fix",
+    "test": "jest src",
+    "prerelease": "zx scripts/prepublish-checks.js",
+    "release": "yarn build && auto shipit",
+    "storybook": "storybook dev -p 6006"
+  },
+  "dependencies": {
+    "mock-xmlhttprequest": "^8.1.0",
+    "path-to-regexp": "^6.3.0",
+    "polished": "^4.2.2",
+    "prop-types": "^15.8.1",
+    "whatwg-fetch": "^3.6.19"
+  },
+  "devDependencies": {
+    "@storybook/addon-docs": "10.1.11",
+    "@storybook/icons": "^1.4.0",
+    "@storybook/react-vite": "10.1.11",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^20",
+    "@types/react": "^18.2.65",
+    "@types/react-dom": "^18.2.21",
+    "@vitejs/plugin-react": "^4.7.0",
+    "auto": "^11.3.0",
+    "boxen": "^8.0.1",
+    "eslint": "^9",
+    "jest": "^30.2.0",
+    "prompts": "^2.4.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rimraf": "^3.0.2",
+    "storybook": "10.1.11",
+    "ts-dedent": "^2.2.0",
+    "ts-jest": "^29.4.5",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "vite": "^7.0.5",
+    "zx": "^8.7.1"
+  },
+  "peerDependencies": {
+    "storybook": "10.1.11"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "bundler": {
+    "managerEntries": [
+      "src/manager.ts"
     ],
-    "author": "Farhad Yasir (nutboltu)",
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/storybook-community/storybook-addon-mock.git"
-    },
-    "type": "module",
-    "exports": {
-        ".": {
-            "types": "./dist/index.d.ts",
-            "default": "./dist/index.js"
-        },
-        "./preview": {
-            "types": "./dist/preview.d.ts",
-            "default": "./dist/preview.js"
-        },
-        "./preset": "./dist/preset.js",
-        "./manager": "./dist/manager.js",
-        "./package.json": "./package.json"
-    },
-    "files": [
-        "dist/**/*",
-        "README.md",
-        "*.js",
-        "*.d.ts"
+    "previewEntries": [
+      "src/preview.ts",
+      "src/index.ts"
     ],
-    "scripts": {
-        "clean": "rimraf ./dist",
-        "prebuild": "yarn clean",
-        "build": "tsup",
-        "build-storybook": "storybook build",
-        "build:watch": "tsup --watch",
-        "lint": "eslint .",
-        "lint:fix": "yarn run lint --fix",
-        "test": "jest src",
-        "prerelease": "zx scripts/prepublish-checks.js",
-        "release": "yarn build && auto shipit",
-        "storybook": "storybook dev -p 6006"
-    },
-    "dependencies": {
-        "mock-xmlhttprequest": "^8.1.0",
-        "path-to-regexp": "^6.3.0",
-        "polished": "^4.2.2",
-        "prop-types": "^15.8.1",
-        "whatwg-fetch": "^3.6.19"
-    },
-    "devDependencies": {
-        "@storybook/addon-docs": "next",
-        "@storybook/icons": "^1.4.0",
-        "@storybook/react-vite": "next",
-        "@types/jest": "^30.0.0",
-        "@types/node": "^20",
-        "@types/react": "^18.2.65",
-        "@types/react-dom": "^18.2.21",
-        "@vitejs/plugin-react": "^4.7.0",
-        "auto": "^11.3.0",
-        "boxen": "^8.0.1",
-        "eslint": "^9",
-        "jest": "^30.2.0",
-        "prompts": "^2.4.2",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "rimraf": "^3.0.2",
-        "storybook": "^10.0.8",
-        "ts-dedent": "^2.2.0",
-        "ts-jest": "^29.4.5",
-        "tsup": "^8.5.0",
-        "typescript": "^5.8.3",
-        "vite": "^7.0.5",
-        "zx": "^8.7.1"
-    },
-    "peerDependencies": {
-        "storybook": "^10.0.0"
-    },
-    "publishConfig": {
-        "access": "public",
-        "registry": "https://registry.npmjs.org/"
-    },
-    "bundler": {
-        "managerEntries": [
-            "src/manager.ts"
-        ],
-        "previewEntries": [
-            "src/preview.ts",
-            "src/index.ts"
-        ],
-        "nodeEntries": [
-            "src/preset.ts"
-        ]
-    },
-    "storybook": {
-        "displayName": "Mock API Request",
-        "supportedFrameworks": [
-            "supportedFrameworks"
-        ],
-        "icon": "https://raw.githubusercontent.com/nutboltu/storybook-addon-mock/master/assets/logo.svg"
-    }
+    "nodeEntries": [
+      "src/preset.ts"
+    ]
+  },
+  "storybook": {
+    "displayName": "Mock API Request",
+    "supportedFrameworks": [
+      "supportedFrameworks"
+    ],
+    "icon": "https://raw.githubusercontent.com/nutboltu/storybook-addon-mock/master/assets/logo.svg"
+  }
 }

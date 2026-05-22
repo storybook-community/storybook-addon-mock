@@ -1,3 +1,4 @@
+import { dirname } from "node:path";
 import remarkGfm from 'remark-gfm';
 import { fileURLToPath } from 'url';
 
@@ -8,9 +9,9 @@ const config = {
     ],
 
     addons: [
-        '@storybook/addon-links',
+        getAbsolutePath("@storybook/addon-links"),
         {
-            name: '@storybook/addon-docs',
+            name: getAbsolutePath("@storybook/addon-docs"),
             options: {
                 mdxPluginOptions: {
                     mdxCompileOptions: {
@@ -23,7 +24,7 @@ const config = {
     ],
 
     framework: {
-        name: '@storybook/react-vite',
+        name: getAbsolutePath("@storybook/react-vite"),
         options: {},
     },
 
@@ -44,3 +45,7 @@ const config = {
     },
 };
 export default config;
+
+function getAbsolutePath(value: string): any {
+    return dirname(fileURLToPath(import.meta.resolve(`${value}/package.json`)));
+}
