@@ -49,9 +49,5 @@
     "prettier": "^3.10.1",
     "typescript-eslint": "^8.72.2"
   },
-  "resolutions": {
-    "highlight.js": "^9.18.5",
-    "prismjs": "^1.30.0"
-  },
   "packageManager": "pnpm@12.21.0"
 }
