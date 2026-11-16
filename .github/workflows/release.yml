@@ -25,23 +25,24 @@ jobs:
       - name: Prepare repository
         run: git fetch --unshallow --tags
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
-          cache: 'yarn'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: |
-          npm install -g yarn
-          yarn install
+        run: pnpm install
 
       - name: Audit dependencies
-        run: yarn npm audit || true
+        run: pnpm audit || true
 
       - name: Create production release
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: yarn workspace @storybook-community/storybook-addon-mock release
+        run: pnpm --filter @storybook-community/storybook-addon-mock release
