@@ -48,6 +48,59 @@ Mostly, there's no playground to modify the response and see the changes in the 
     <li> A <strong>delay option which helps you delaying the response</strong> so that you can test any kind of loading behaviour.</li>
  </ul>
 
+### Installation
+
+This addon requires Storybook 11. Run the following command to install the addon and register it in your Storybook configuration:
+
+```sh
+npx storybook add @storybook-community/storybook-addon-mock
+```
+
+#### Manual installation
+
+Install the addon:
+
+```sh
+npm i -D @storybook-community/storybook-addon-mock
+```
+
+Register it in your `.storybook/main.ts` file:
+
+```ts
+// .storybook/main.ts
+
+// Replace your-framework with the framework you are using (e.g., react-vite, nextjs-vite)
+import { defineMain } from '@storybook/your-framework/node';
+
+export default defineMain({
+    // ...rest of config
+    addons: [
+        // ...other addons
+        '@storybook-community/storybook-addon-mock',
+    ],
+});
+```
+
+Then register the addon's preview annotations in your `.storybook/preview.ts` file:
+
+```ts
+// .storybook/preview.ts
+
+// Replace your-framework with the framework you are using (e.g., react-vite, nextjs-vite)
+import { definePreview } from '@storybook/your-framework';
+import addonMock from '@storybook-community/storybook-addon-mock';
+
+export default definePreview({
+    // ...rest of preview
+    addons: [addonMock()],
+});
+```
+
+### Previous Storybook versions
+
+- Storybook 10: use version 10.x of this addon
+- Storybook 9 and earlier: use [`storybook-addon-mock`](https://www.npmjs.com/package/storybook-addon-mock) instead
+
 ### Documentation
 
 [See the documentation](https://storybook-addon-mock.netlify.app)

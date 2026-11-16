@@ -1,17 +1,17 @@
-const Preview = {
-  parameters: {
-    options: {
-      storySort: {
-        order: ['Docs', ['Introduction', 'Installation', 'Advanced setup', 'User guide']],
-        includeName: true
-      }
-    },
-    mockAddonConfigs: {
-      globalMockData: [],
-      refreshStoryOnUpdate: true,
-      disableUsingOriginal: false,
-    },
-  },
-}
+import { definePreview } from '@storybook/react-vite';
+import addonDocs from '@storybook/addon-docs';
+import addonLinks from '@storybook/addon-links';
 
-export default Preview
+// to load the built addon in this test Storybook
+import addonMock from '../../mock-addon/dist/index.js';
+
+export default definePreview({
+    addons: [addonDocs(), addonLinks(), addonMock()],
+    parameters: {
+        mockAddonConfigs: {
+            globalMockData: [],
+            refreshStoryOnUpdate: true,
+            disableUsingOriginal: false,
+        },
+    },
+});
