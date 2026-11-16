@@ -38,24 +38,16 @@
     "mock-request"
   ],
   "devDependencies": {
-    "@babel/core": "^7.29.6",
-    "@babel/eslint-parser": "^7.21.3",
-    "@eslint/compat": "^2.0.0",
-    "@eslint/js": "^9.39.1",
-    "@typescript-eslint/eslint-plugin": "^8.47.0",
-    "@typescript-eslint/parser": "^8.47.0",
+    "@babel/core": "^8.1.2",
+    "@babel/eslint-parser": "^8.1.2",
+    "@eslint/js": "^9.39.5",
     "eslint": "catalog:",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-prettier": "^5.5.4",
-    "eslint-plugin-react": "^7.32.2",
-    "globals": "^16.5.0",
-    "jest": "catalog:",
-    "prettier": "^3.6.2",
-    "prop-types": "catalog:",
-    "typescript-eslint": "^8.47.0",
-    "webpack": "^5.104.1"
+    "eslint-plugin-prettier": "^5.5.7",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^17.14.0",
+    "prettier": "^3.10.1",
+    "typescript-eslint": "^8.72.2"
   },
   "resolutions": {
     "highlight.js": "^9.18.5",

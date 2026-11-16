@@ -65,9 +65,6 @@ export default [
             ],
             'react/no-array-index-key': 0,
 
-            // Import rules
-            'import/no-extraneous-dependencies': 0,
-
             // Prettier integration
             ...prettierConfig.rules,
             'prettier/prettier': 'error',

@@ -4,8 +4,6 @@ import * as babelParser from '@babel/eslint-parser';
 import prettierConfig from 'eslint-config-prettier';
 import prettierPlugin from 'eslint-plugin-prettier';
 import reactPlugin from 'eslint-plugin-react';
-import importPlugin from 'eslint-plugin-import';
-import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 import tseslint from 'typescript-eslint';
 
 export default [
@@ -53,8 +51,6 @@ export default [
         },
         plugins: {
             react: reactPlugin,
-            import: importPlugin,
-            'jsx-a11y': jsxA11yPlugin,
             prettier: prettierPlugin,
         },
         settings: {
@@ -70,9 +66,6 @@ export default [
                 { extensions: ['.js', '.jsx'] },
             ],
             'react/no-array-index-key': 0,
-
-            // Import rules
-            'import/no-extraneous-dependencies': 0,
 
             // Prettier integration
             ...prettierConfig.rules,
