@@ -18,7 +18,6 @@
     "@storybook/addon-docs": "catalog:",
     "@storybook/addon-links": "catalog:",
     "@storybook/react-vite": "catalog:",
-    "@storybook/storybook-deployer": "^2.8.16",
     "remark-gfm": "^4.0.1",
     "storybook": "catalog:",
     "eslint-plugin-storybook": "catalog:",
@@ -27,7 +26,6 @@
   "dependencies": {
     "axios": "^1.21.1",
     "react": "catalog:",
-    "react-code-blocks": "^0.0.9-0",
     "react-dom": "catalog:",
     "superagent": "^10.4.2",
     "vite": "catalog:",
