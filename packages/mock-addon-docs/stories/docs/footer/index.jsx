@@ -60,7 +60,7 @@ export const Footer = ({ title, subtitle, actionText, actionLink }) => (
                     <strong>{title}</strong>
                     {subtitle}
                 </div>
-                <LinkTo className="continue" kind={actionLink} story="docs">
+                <LinkTo className="continue" title={actionLink} name="Docs">
                     {actionText}
                 </LinkTo>
             </div>

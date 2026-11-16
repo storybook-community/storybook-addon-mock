@@ -15,47 +15,66 @@ import { Footer } from './footer';
 
 <h2 className="subheading">Installation and Setup</h2>
 
-<h3 className="subheading">1. Install storybook-addon-mock</h3>
+<h3 className="subheading">1. Install the addon</h3>
 
-<div>Using npm</div>
-
-```sh
-    npm i storybook-addon-mock -D
-```
-<div> Using yarn </div>
+This addon requires Storybook 11. Run the following command to install the addon and register it in your Storybook configuration:
 
 ```sh
-    yarn add storybook-addon-mock -D
+npx storybook add @storybook-community/storybook-addon-mock
 ```
 
-<h3 className="subheading">2. Setting up addon</h3>
+<h3 className="subheading">2. Manual setup</h3>
 
-Firstly, add `storybook-addon-mock` addon in your `.storybook/main.js` file.
+If you prefer to install the addon manually, install it first:
 
-```js
+```sh
+npm i -D @storybook-community/storybook-addon-mock
+```
 
-module.exports = {
-    ...
+Then register it in your `.storybook/main.ts` file:
+
+```ts
+// .storybook/main.ts
+
+// Replace your-framework with the framework you are using (e.g., react-vite, nextjs-vite)
+import { defineMain } from '@storybook/your-framework/node';
+
+export default defineMain({
+    // ...rest of config
     addons: [
-        ...
-        'storybook-addon-mock',
+        // ...other addons
+        '@storybook-community/storybook-addon-mock',
     ],
-    ...
-};
+});
+```
+
+Finally, register the addon's preview annotations in your `.storybook/preview.ts` file:
+
+```ts
+// .storybook/preview.ts
+
+// Replace your-framework with the framework you are using (e.g., react-vite, nextjs-vite)
+import { definePreview } from '@storybook/your-framework';
+import addonMock from '@storybook-community/storybook-addon-mock';
+
+export default definePreview({
+    // ...rest of preview
+    addons: [addonMock()],
+});
 ```
 
 There are <strong>global configurations</strong> that you can set in the preview.
-See the <LinkTo kind="Docs/Advanced Setup" story="page">Advanced Setup</LinkTo> section for more details.
+See the <LinkTo title="Docs/Advanced setup" name="Docs">Advanced Setup</LinkTo> section for more details.
 
 <h3 className="subheading">3. Configure mock data</h3>
 
 Add your mock data in the story parameters. This `mockData` attribute is an <strong>array</strong> of the mock object.
 
 ```js
-import React from 'react';
+import preview from '../.storybook/preview';
 import { FetchExample } from './index';
 
-export default {
+const meta = preview.meta({
     title: 'Examples/Fetch',
     component: FetchExample,
     parameters: {
@@ -70,12 +89,9 @@ export default {
             },
         ],
     },
-};
+});
 
-const Template = () => <FetchExample />;
-
-export const FetchCall = Template.bind({});
-
+export const FetchCall = meta.story();
 ```
 
 Each mock object contains the following properties.
