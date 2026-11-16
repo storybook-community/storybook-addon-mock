@@ -3,24 +3,21 @@
   "description": "A monorepo for storybook-addon-mock",
   "version": "10.1.2",
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
     "clean": "rm -rf dist",
-    "build": "yarn run addon:build && yarn run docs:build",
-    "build:storybook": "yarn workspace @storybook-community/storybook-addon-mock-docs run build",
-    "lint": "yarn workspaces run lint",
-    "lint:fix": "yarn workspaces run lint:fix",
+    "build": "pnpm addon:build && pnpm docs:build",
+    "build:storybook": "pnpm docs:build",
+    "lint": "pnpm -r lint",
+    "lint:fix": "pnpm -r lint:fix",
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
-    "test": "yarn workspaces run test",
-    "test:coverage": "yarn workspaces run test -- --coverage",
-    "ci": "yarn run lint && yarn run test && yarn run addon:build && yarn run docs:build",
-    "addon:build": "yarn workspace @storybook-community/storybook-addon-mock run build",
-    "docs:start": "yarn workspace @storybook-community/storybook-addon-mock-docs run storybook",
-    "docs:build": "yarn workspace @storybook-community/storybook-addon-mock-docs run build",
-    "dedup": "yarn-deduplicate"
+    "test": "pnpm -r test",
+    "test:coverage": "pnpm -r test --coverage",
+    "ci": "pnpm lint && pnpm test && pnpm addon:build && pnpm docs:build",
+    "addon:build": "pnpm --filter @storybook-community/storybook-addon-mock build",
+    "docs:start": "pnpm --filter @storybook-community/storybook-addon-mock-docs storybook",
+    "docs:build": "pnpm --filter @storybook-community/storybook-addon-mock-docs build",
+    "dedup": "pnpm dedupe"
   },
   "repository": {
     "type": "git",
@@ -47,22 +44,22 @@
     "@eslint/js": "^9.39.1",
     "@typescript-eslint/eslint-plugin": "^8.47.0",
     "@typescript-eslint/parser": "^8.47.0",
-    "eslint": "^9.39.1",
+    "eslint": "catalog:",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-react": "^7.32.2",
     "globals": "^16.5.0",
-    "jest": "^30.2.0",
+    "jest": "catalog:",
     "prettier": "^3.6.2",
-    "prop-types": "^15.8.1",
+    "prop-types": "catalog:",
     "typescript-eslint": "^8.47.0",
-    "webpack": "^5.104.1",
-    "yarn-deduplicate": "^6.0.1"
+    "webpack": "^5.104.1"
   },
   "resolutions": {
     "highlight.js": "^9.18.5",
     "prismjs": "^1.30.0"
-  }
+  },
+  "packageManager": "pnpm@12.21.0"
 }

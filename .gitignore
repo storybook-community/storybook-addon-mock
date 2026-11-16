@@ -7,7 +7,7 @@ node_modules
 **/node_modules
 
 #error files
-yarn-error.log
+pnpm-debug.log*
 
 #build files
 dist
