@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { styled } from 'storybook/theming';
+import { styled } from 'storybook/theming/emotion';
 import { Form, Placeholder } from 'storybook/internal/components';
 import { Card } from './Card';
 import statusTextMap from '../utils/statusMap';

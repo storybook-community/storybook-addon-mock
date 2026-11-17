@@ -40,7 +40,7 @@ export const GetComponent = ({ title, callApi, code }) => {
             {code && (
                 <div>
                     To see the custom function implementation, go to{' '}
-                    <LinkTo kind="Docs/Advanced Setup" story="page">
+                    <LinkTo title="Docs/Advanced setup" name="Docs">
                         Advanced Setup &gt; 3. Custom response function
                     </LinkTo>
                 </div>

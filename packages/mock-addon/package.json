@@ -1,6 +1,6 @@
 {
   "name": "@storybook-community/storybook-addon-mock",
-  "version": "10.1.2",
+  "version": "0.0.0-semantically-released",
   "description": "A storybook addon to mock fetch/XHR request",
   "keywords": [
     "storybook",
@@ -37,59 +37,53 @@
   "files": [
     "dist/**/*",
     "README.md",
-    "*.js",
-    "*.d.ts"
+    "manager.js",
+    "preset.js",
+    "preview.js"
   ],
   "scripts": {
-    "clean": "rimraf ./dist",
-    "prebuild": "yarn clean",
+    "clean": "node -e \"fs.rmSync('./dist', { recursive: true, force: true })\"",
+    "prebuild": "pnpm clean",
     "build": "tsup",
-    "build-storybook": "storybook build",
     "build:watch": "tsup --watch",
     "lint": "eslint .",
-    "lint:fix": "yarn run lint --fix",
+    "lint:fix": "pnpm lint --fix",
     "test": "jest src",
     "prerelease": "zx scripts/prepublish-checks.js",
-    "release": "yarn build && auto shipit",
-    "storybook": "storybook dev -p 6006"
+    "release": "pnpm build && pnpm semantic-release",
+    "release:canary": "pnpm build && auto canary"
   },
   "dependencies": {
-    "mock-xmlhttprequest": "^8.1.0",
+    "mock-xmlhttprequest": "^8.4.1",
     "path-to-regexp": "^6.3.0",
-    "polished": "^4.2.2",
+    "polished": "^4.3.1",
     "prop-types": "^15.8.1",
-    "whatwg-fetch": "^3.6.19"
+    "whatwg-fetch": "^3.6.20"
   },
   "devDependencies": {
-    "@storybook/addon-docs": "10.6.5",
-    "@storybook/icons": "^1.4.0",
-    "@storybook/react-vite": "10.6.5",
     "@types/jest": "^30.0.0",
-    "@types/node": "^20",
-    "@types/react": "^18.2.65",
-    "@types/react-dom": "^18.2.21",
-    "@vitejs/plugin-react": "^4.7.0",
-    "auto": "^11.3.0",
-    "boxen": "^8.0.1",
-    "eslint": "^9",
-    "jest": "^30.2.0",
-    "prompts": "^2.4.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "rimraf": "^3.0.2",
-    "storybook": "10.6.5",
-    "ts-dedent": "^2.2.0",
-    "ts-jest": "^29.4.5",
-    "tsup": "^8.5.0",
-    "typescript": "^5.8.3",
-    "vite": "^7.3.7",
-    "zx": "^8.7.1"
+    "@types/node": "^22.20.5",
+    "@types/prop-types": "^15.7.15",
+    "@types/react": "^18.3.31",
+    "auto": "^11.3.6",
+    "boxen": "^9.0.0",
+    "eslint": "catalog:",
+    "jest": "^30.5.2",
+    "react": "catalog:",
+    "semantic-release": "^25.0.9",
+    "storybook": "catalog:",
+    "ts-dedent": "^2.3.0",
+    "ts-jest": "^29.4.15",
+    "tsup": "^9.0.0",
+    "typescript": "catalog:",
+    "zx": "^8.8.5"
   },
   "peerDependencies": {
-    "storybook": "10.1.11"
+    "storybook": "^11.0.0"
   },
   "publishConfig": {
     "access": "public",
+    "provenance": true,
     "registry": "https://registry.npmjs.org/"
   },
   "bundler": {
@@ -105,10 +99,10 @@
     ]
   },
   "storybook": {
-    "displayName": "Mock API Request",
+    "displayName": "Addon Mock (community version)",
     "supportedFrameworks": [
-      "supportedFrameworks"
+      "supported-frameworks"
     ],
-    "icon": "https://raw.githubusercontent.com/nutboltu/storybook-addon-mock/master/assets/logo.svg"
+    "icon": "https://avatars.githubusercontent.com/u/216219414?s=200&v=4"
   }
 }

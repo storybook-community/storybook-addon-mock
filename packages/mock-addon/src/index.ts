@@ -1,4 +1,5 @@
 if (
+    typeof module !== 'undefined' &&
     module &&
     'hot' in module &&
     module.hot &&

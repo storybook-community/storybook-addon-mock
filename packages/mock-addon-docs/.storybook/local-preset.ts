@@ -1,10 +1,10 @@
 import { fileURLToPath } from 'node:url';
 
+/**
+ * preview annotations are registered in .storybook/preview.tsx with definePreview
+ */
 export function previewAnnotations(entry = []) {
-    return [
-        ...entry,
-        fileURLToPath(import.meta.resolve('../../mock-addon/dist/preview.js')),
-    ];
+    return entry;
 }
 
 export function managerEntries(entry = []) {

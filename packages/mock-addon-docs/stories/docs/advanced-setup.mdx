@@ -16,7 +16,7 @@ import { Footer } from './footer';
 
 <h3 className="subheading">1. Global configuration</h3>
 
-You can set <strong>global configuration</strong> for the addon. Go to the `.storybook/preview.jsx` file and add `mockAddonConfigs` fields with the following properties.
+You can set <strong>global configuration</strong> for the addon. Go to the `.storybook/preview.ts` file and add `mockAddonConfigs` fields with the following properties.
 
 
 
@@ -29,24 +29,28 @@ You can set <strong>global configuration</strong> for the addon. Go to the `.sto
 | `disable`                | This property disables the panel from all the stories                          | false   |
 
 
-```js
-export const parameters = {
-  ...
-  mockAddonConfigs: {
-    globalMockData: [{
-      // An array of mock objects which will add in every story
-      url: 'http://localhost:0000',
-      method: 'PUT',
-      status: 201,
-      response: {},
-    }],
-    ignoreQueryParams: true, // Whether or not to ignore query parameters globally
-    refreshStoryOnUpdate: true, // This property re-renders the story if there's any data changes
-    disableUsingOriginal: false, // This property disables the toggle (on/off) option to use the original endpoint
-    disable: true, // This property disables the panel from all the stories
-  }
-  ...
-}
+```ts
+// .storybook/preview.ts
+
+export default definePreview({
+  // ...rest of preview
+  addons: [addonMock()],
+  parameters: {
+    mockAddonConfigs: {
+      globalMockData: [{
+        // An array of mock objects which will add in every story
+        url: 'http://localhost:0000',
+        method: 'PUT',
+        status: 201,
+        response: {},
+      }],
+      ignoreQueryParams: true, // Whether or not to ignore query parameters globally
+      refreshStoryOnUpdate: true, // This property re-renders the story if there's any data changes
+      disableUsingOriginal: false, // This property disables the toggle (on/off) option to use the original endpoint
+      disable: true, // This property disables the panel from all the stories
+    },
+  },
+});
 ```
 
 
@@ -55,41 +59,37 @@ export const parameters = {
 We can set mock data for a <strong>single story </strong> with the parameters
 
 ```js
-
-import React from 'react';
+import preview from '../.storybook/preview';
 import { FetchExample } from './index';
 
-export default {
+const meta = preview.meta({
     title: 'Examples/Fetch',
     component: FetchExample,
-};
+});
 
-const Template = () => <FetchExample />;
-
-export const FetchCall = Template.bind({});
-
-FetchCall.parameters = {
-    mockData: [
-        {
-            url: 'https://jsonplaceholder.typicode.com/todos/1',
-            method: 'GET',
-            status: 200,
-            response: {
-                data: 'Hello storybook-addon-mock!',
+export const FetchCall = meta.story({
+    parameters: {
+        mockData: [
+            {
+                url: 'https://jsonplaceholder.typicode.com/todos/1',
+                method: 'GET',
+                status: 200,
+                response: {
+                    data: 'Hello storybook-addon-mock!',
+                },
             },
-        },
-    ],
-};
-
+        ],
+    },
+});
 ```
 
-We can set mock data for <strong>all stories of a component </strong> using the parameters key on the default CSF export
+We can set mock data for <strong>all stories of a component </strong> using the parameters key of the meta
 
 ```js
-import React from 'react';
+import preview from '../.storybook/preview';
 import { FetchExample } from './index';
 
-export default {
+const meta = preview.meta({
     title: 'Examples/Fetch',
     component: FetchExample,
     parameters: {
@@ -104,12 +104,9 @@ export default {
             },
         ],
     },
-};
+});
 
-const Template = () => <FetchExample />;
-
-export const FetchCall = Template.bind({});
-
+export const FetchCall = meta.story();
 ```
 
 <h3 className="subheading">3. Custom response function</h3>
@@ -118,62 +115,58 @@ You can customise the response using the custom response function. Response func
 You can return custom response depends on the request payload.
 
 ```js
-import React from 'react';
+import preview from '../.storybook/preview';
 import { FetchExample } from './index';
 
-export default {
+const meta = preview.meta({
     title: 'Examples/Fetch',
     component: FetchExample,
-};
+});
 
-const Template = () => <FetchExample />;
+export const FetchCall = meta.story({
+    parameters: {
+        mockData: [
+            {
+                url: 'https://jsonplaceholder.typicode.com/todos/1',
+                method: 'GET',
+                status: 200,
+                response: (request) => {
+                    const { body, searchParams } = request;
 
-export const FetchCall = Template.bind({});
-
-FetchCall.parameters = {
-    mockData: [
-        {
-            url: 'https://jsonplaceholder.typicode.com/todos/1',
-            method: 'GET',
-            status: 200,
-            response: (request) => {
-                const { body, searchParams } = request;
-
-                if (searchParams.id == 1) {
+                    if (searchParams.id == 1) {
+                        return {
+                            data: 'Custom data for id 1',
+                        };
+                    } else if (body.name === 'mock') {
+                        return {
+                            data: 'Custom data for name mock',
+                        };
+                    }
                     return {
-                        data: 'Custom data for id 1',
+                        data: 'Default data',
                     };
-                } else if (body.name === 'mock') {
-                    return {
-                        data: 'Custom data for name mock',
-                    };
-                }
-                return {
-                    data: 'Default data',
-                };
+                },
             },
-        }
-    ],
-};
+        ],
+    },
+});
 ```
 <h3 className="subheading">2. Disable the panel for a story</h3>
 
 ```js
-import React from 'react';
+import preview from '../.storybook/preview';
 import { FetchExample } from './index';
 
-export default {
+const meta = preview.meta({
     title: 'Examples/Fetch',
     component: FetchExample,
-};
+});
 
-const Template = () => <FetchExample />;
-
-export const FetchCall = Template.bind({});
-
-FetchCall.parameters = {
-    mockAddonConfigs: { disable: true }
-};
+export const FetchCall = meta.story({
+    parameters: {
+        mockAddonConfigs: { disable: true },
+    },
+});
 ```
 
 <Footer

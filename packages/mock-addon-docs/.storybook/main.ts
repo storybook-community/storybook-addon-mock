@@ -1,17 +1,18 @@
-import { dirname } from "node:path";
+import { defineMain } from '@storybook/react-vite/node';
+import { dirname } from 'node:path';
 import remarkGfm from 'remark-gfm';
 import { fileURLToPath } from 'url';
 
-const config = {
+export default defineMain({
     stories: [
         '../stories/**/*.mdx',
         '../stories/**/stories.@(js|jsx|mjs|ts|tsx)',
     ],
 
     addons: [
-        getAbsolutePath("@storybook/addon-links"),
+        getAbsolutePath('@storybook/addon-links'),
         {
-            name: getAbsolutePath("@storybook/addon-docs"),
+            name: getAbsolutePath('@storybook/addon-docs'),
             options: {
                 mdxPluginOptions: {
                     mdxCompileOptions: {
@@ -24,7 +25,7 @@ const config = {
     ],
 
     framework: {
-        name: getAbsolutePath("@storybook/react-vite"),
+        name: getAbsolutePath('@storybook/react-vite'),
         options: {},
     },
 
@@ -43,8 +44,21 @@ const config = {
 
         return config;
     },
-};
-export default config;
+    storySorts: [
+        {
+            order: [
+                'Docs',
+                [
+                    'Introduction',
+                    'Installation',
+                    'Advanced setup',
+                    'User guide',
+                ],
+            ],
+            includeName: true,
+        },
+    ],
+});
 
 function getAbsolutePath(value: string): any {
     return dirname(fileURLToPath(import.meta.resolve(`${value}/package.json`)));

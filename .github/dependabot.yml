@@ -6,6 +6,10 @@ updates:
     schedule:
       interval: 'weekly'
     versioning-strategy: increase
+    assignees:
+      - 'Sidnioulz'
+    reviewers:
+      - 'Sidnioulz'
     groups:
       all:
         patterns:
@@ -13,3 +17,16 @@ updates:
     ignore:
       - dependency-name: '@storybook/*'
       - dependency-name: 'storybook'
+      - dependency-name: 'eslint-plugin-storybook'
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'weekly'
+    assignees:
+      - 'Sidnioulz'
+    reviewers:
+      - 'Sidnioulz'
+    groups:
+      all:
+        patterns:
+          - '*'

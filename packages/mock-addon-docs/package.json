@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "lint:fix": "yarn run lint --fix",
+    "lint:fix": "pnpm lint --fix",
     "test": "echo \"Error: no test specified\"",
     "storybook": "storybook dev -p 6006",
     "build": "storybook build",
@@ -15,20 +15,20 @@
   "author": "Farhad Yasir(nutboltu)",
   "license": "MIT",
   "devDependencies": {
-    "@storybook/addon-docs": "10.6.5",
-    "@storybook/addon-links": "10.6.5",
-    "@storybook/react-vite": "10.6.5",
-    "@storybook/storybook-deployer": "^2.8.16",
+    "@storybook/addon-docs": "catalog:",
+    "@storybook/addon-links": "catalog:",
+    "@storybook/react-vite": "catalog:",
     "remark-gfm": "^4.0.1",
-    "storybook": "10.6.5",
-    "eslint-plugin-storybook": "10.6.5"
+    "storybook": "catalog:",
+    "eslint-plugin-storybook": "catalog:",
+    "typescript": "catalog:"
   },
   "dependencies": {
-    "axios": "^1.20.0",
-    "react": "^18.2.0",
-    "react-code-blocks": "^0.0.9-0",
-    "react-dom": "^18.2.0",
-    "superagent": "^8.0.9",
-    "vite": "^5.4.19"
+    "axios": "^1.21.1",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "superagent": "^10.4.2",
+    "vite": "catalog:",
+    "prop-types": "catalog:"
   }
 }
