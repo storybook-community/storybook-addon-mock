@@ -1,6 +1,6 @@
 {
   "name": "@storybook-community/storybook-addon-mock",
-  "version": "10.1.2",
+  "version": "0.0.0-semantically-released",
   "description": "A storybook addon to mock fetch/XHR request",
   "keywords": [
     "storybook",
@@ -37,8 +37,9 @@
   "files": [
     "dist/**/*",
     "README.md",
-    "*.js",
-    "*.d.ts"
+    "manager.js",
+    "preset.js",
+    "preview.js"
   ],
   "scripts": {
     "clean": "node -e \"fs.rmSync('./dist', { recursive: true, force: true })\"",
@@ -49,7 +50,8 @@
     "lint:fix": "pnpm lint --fix",
     "test": "jest src",
     "prerelease": "zx scripts/prepublish-checks.js",
-    "release": "pnpm build && auto shipit"
+    "release": "pnpm build && pnpm semantic-release",
+    "release:canary": "pnpm build && auto canary"
   },
   "dependencies": {
     "mock-xmlhttprequest": "^8.4.1",
@@ -68,6 +70,7 @@
     "eslint": "catalog:",
     "jest": "^30.5.2",
     "react": "catalog:",
+    "semantic-release": "^25.0.9",
     "storybook": "catalog:",
     "ts-dedent": "^2.3.0",
     "ts-jest": "^29.4.15",
@@ -80,6 +83,7 @@
   },
   "publishConfig": {
     "access": "public",
+    "provenance": true,
     "registry": "https://registry.npmjs.org/"
   },
   "bundler": {
