@@ -16,6 +16,7 @@
     "ci": "pnpm lint && pnpm test && pnpm addon:build && pnpm docs:build",
     "addon:build": "pnpm --filter @storybook-community/storybook-addon-mock build",
     "release": "pnpm --filter @storybook-community/storybook-addon-mock release",
+    "release:canary": "pnpm --filter @storybook-community/storybook-addon-mock release:canary",
     "docs:start": "pnpm --filter @storybook-community/storybook-addon-mock-docs storybook",
     "docs:build": "pnpm --filter @storybook-community/storybook-addon-mock-docs build",
     "dedup": "pnpm dedupe"
